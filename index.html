@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wallpaper Changer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="stage" aria-label="Wallpaper"></main>
+
+  <div id="toast" aria-live="polite"></div>
+
+  <section id="empty" hidden>
+    <div class="card">
+      <h1>No wallpapers yet</h1>
+      <p>Put some pictures in the <code>img</code> folder, then double-click
+        <code>update-images.bat</code> and refresh this page.</p>
+      <p>Or pick a folder (or drag pictures onto this window) to use right now.</p>
+      <button type="button" class="primary" data-action="pick">Choose a folder</button>
+    </div>
+  </section>
+
+  <nav id="bar" aria-label="Controls">
+    <button type="button" data-action="prev" title="Previous (Left arrow)">
+      <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button type="button" data-action="play" id="playBtn" title="Pause / play (Space)">
+      <svg viewBox="0 0 24 24" class="icon-pause"><path d="M8 5v14M16 5v14"/></svg>
+      <svg viewBox="0 0 24 24" class="icon-play"><path d="M7 4l13 8-13 8z"/></svg>
+    </button>
+    <button type="button" data-action="next" title="Next (Right arrow)">
+      <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+
+    <div class="info">
+      <span id="counter">0 / 0</span>
+      <span id="name"></span>
+    </div>
+
+    <label title="Time between wallpapers">
+      <span>Every</span>
+      <select id="interval">
+        <option value="5">5 sec</option>
+        <option value="10">10 sec</option>
+        <option value="20">20 sec</option>
+        <option value="60">1 min</option>
+        <option value="300">5 min</option>
+        <option value="900">15 min</option>
+      </select>
+    </label>
+
+    <label title="Animation between wallpapers">
+      <span>Effect</span>
+      <select id="effect"><option value="random">Random</option></select>
+    </label>
+
+    <button type="button" data-action="shuffle" id="shuffleBtn" title="Shuffle order (S)">
+      <svg viewBox="0 0 24 24"><path d="M3 6h4l10 12h4M3 18h4l3-3.6M14 9.6L17 6h4M18 3l3 3-3 3M18 15l3 3-3 3"/></svg>
+    </button>
+    <button type="button" data-action="fit" id="fitBtn" title="Fill screen / show whole picture (Z)">
+      <svg viewBox="0 0 24 24"><path d="M3 5h18v14H3zM8 9h8v6H8z"/></svg>
+    </button>
+    <button type="button" data-action="pick" title="Choose a folder of pictures">
+      <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+    </button>
+    <button type="button" data-action="fullscreen" title="Full screen (F)">
+      <svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg>
+    </button>
+  </nav>
+
+  <input type="file" id="folderInput" webkitdirectory directory multiple hidden>
+
+  <!-- List of pictures in img/. Rebuild it with update-images.bat. -->
+  <script src="img/images.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
